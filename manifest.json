@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "The Poor Man Feel It",
-  "description": "This extension does the job",
-  "version": "1.0",
+  "description": "Chrome extension for browsing clarin.com, ole.com.ar and lanacion.com without loggin in",
+  "version": "1.1",
 
   "permissions": ["activeTab"],
 

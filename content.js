@@ -25,5 +25,17 @@ function ownProvider2 () {
   if (elem) elem.remove()
 }
 
+function ownProvider3 () {
+  let elem
+
+  elem = document.querySelector('.modalLoginPase')
+  if (elem) elem.remove()
+
+  elem = document.querySelector('#cboxOverlay')
+  if (elem) elem.remove()
+}
+
 if (window.location.host.indexOf('clarin.com') !== -1) setInterval(ownProvider1, 2000)
 if (window.location.host.indexOf('lanacion.com') !== -1) setInterval(ownProvider2, 2000)
+if (window.location.host.indexOf('ole.com.ar') !== -1) setInterval(ownProvider3, 2000)
+
