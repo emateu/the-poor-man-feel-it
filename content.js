@@ -1,3 +1,23 @@
+/* global chrome */
+
+const removeAllCookies = function () {
+  if (!chrome.cookies) {
+    chrome.cookies = chrome.experimental.cookies
+  }
+
+  var removeCookie = function (cookie) {
+    var url = 'http' + (cookie.secure ? 's' : '') + '://' + cookie.domain + cookie.path
+    chrome.cookies.remove({'url': url, 'name': cookie.name})
+  }
+
+  chrome.cookies.getAll({}, function (allCookies) {
+    var count = allCookies.length
+    for (var i = 0; i < count; i++) {
+      removeCookie(allCookies[i])
+    }
+  })
+}
+
 function ownProvider1 () {
   let elem
 
@@ -14,15 +34,10 @@ function ownProvider1 () {
   }
 
   Array.of(document.querySelectorAll('.banner.smt')).map(k => (k[0] ? k[0].remove() : null))
-
-  console.log('Owned')
 }
 
 function ownProvider2 () {
-  let elem
-
-  elem = document.querySelector('.lnmodal.pantalla-completa.login')
-  if (elem) elem.remove()
+  removeAllCookies()
 }
 
 function ownProvider3 () {
@@ -38,4 +53,3 @@ function ownProvider3 () {
 if (window.location.host.indexOf('clarin.com') !== -1) setInterval(ownProvider1, 2000)
 if (window.location.host.indexOf('lanacion.com') !== -1) setInterval(ownProvider2, 2000)
 if (window.location.host.indexOf('ole.com.ar') !== -1) setInterval(ownProvider3, 2000)
-
